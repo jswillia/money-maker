@@ -1,20 +1,14 @@
 # Strategy 4 — AI Micro-SaaS (Contract Analyzer)
 
+> **Shared Playbook** — Each partner can build their own SaaS product on their own infrastructure.
 > **Consensus Score:** 7 pts | 4/5 panels (most widely selected) | **Capital Required:** $0-$35 | **Risk:** Moderate
 
 ---
 
-## Status
+## Partner Status
 
-| Field | Value |
-|---|---|
-| **Status** | Not Started |
-| **Capital Deployed** | $0 |
-| **Free Users** | 0 |
-| **Paid Users** | 0 |
-| **MRR** | $0 |
-| **Health Score** | -- |
-| **Last Updated** | Feb 19, 2026 |
+> Each partner tracks their own SaaS metrics in their Revenue Tracker: [[Jeff/Revenue Tracker]] or [[Patrick/Revenue Tracker]].
+> Update this playbook with **shared learnings** — user acquisition, pricing, feature priorities, etc.
 
 ---
 

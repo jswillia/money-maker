@@ -1,6 +1,6 @@
 # Getting Started
 
-> Step-by-step instructions to go from zero to a running Money Maker system.
+> Step-by-step instructions to go from zero to running strategies. Each partner follows this independently.
 
 ---
 
@@ -9,140 +9,130 @@
 Before starting, you need:
 
 - [ ] **$100 cash** available to deploy
-- [ ] **Claude Max subscription** (already active — bills CLI usage)
-- [ ] **MiniDev Mac Mini** running with n8n (already running)
-- [ ] **This vault** open in Obsidian
+- [ ] **This vault** open in Obsidian (see [[Git and Obsidian Guide]])
+- [ ] **Your API keys** ready (see your Portfolio note)
+- [ ] Access to Jeff's n8n instance (Jeff sets this up for you)
 
 ---
 
-## Phase 0: Account Setup (Human — 45 min one-time)
+## Phase 0: Choose Your Strategies
 
-### Trading Accounts
+Read the strategy playbooks in `Strategies/` and decide which to pursue:
 
-| Account | Action | Time | Notes |
-|---|---|---|---|
-| **Kalshi** | Sign up at kalshi.com, complete identity verification, deposit $25 | 15 min | CFTC-regulated. US ID required. |
-| **Polymarket** | Create account, set up crypto wallet, deposit $25 worth of USDC | 15 min | Requires MetaMask or similar wallet. |
+| # | Playbook | Capital Required | Risk | Good For |
+|---|---|---|---|---|
+| 1 | [[Strategy 1 - Gumroad Digital Products]] | $0 | Low | Zero-risk start, builds catalog over time |
+| 2 | [[Strategy 2 - Kalshi Weather Bot]] | $25 | Moderate | Active trading with data-driven edge |
+| 3 | [[Strategy 3 - n8n Workflow Templates]] | $0 | Very Low | Zero-risk, leverages n8n community |
+| 4 | [[Strategy 4 - AI Micro-SaaS]] | $0-35 | Moderate | MRR potential, needs more build time |
+| 5 | [[Strategy 5 - Prediction Market Arb]] | $25 | Low-Moderate | Automated arbitrage across platforms |
 
-### Product Accounts
+**Recommendation:** Start with 1-2 strategies. Add more once the first ones are running.
 
-| Account | Action | Time | Notes |
-|---|---|---|---|
-| **Gumroad** | Sign up as seller at gumroad.com, connect payment method | 5 min | Free to list. 10% fee per sale. |
-| **Stripe** | Sign up at stripe.com, complete business verification | 10 min | For Micro-SaaS payments. |
+---
 
-### Infrastructure (Already Exists)
+## Phase 1: Account Setup (Human — 30-60 min one-time)
 
-These are already set up on MiniDev:
-- [x] n8n (self-hosted)
-- [x] Claude Code CLI
-- [x] Tailscale remote access
-- [x] Telegram bot
-- [x] Gmail OAuth in n8n
+Set up accounts based on the strategies you chose. Update your Portfolio note as you go.
 
-### Optional
+### If Running Trading Strategies (#2 or #5)
 
-| Account | Action | When |
+| Account | Action | Time |
 |---|---|---|
-| Supabase | Create project at supabase.com | Week 2 (before Micro-SaaS build) |
-| Vercel | Sign up at vercel.com | Week 2 (before Micro-SaaS deploy) |
-| Chrome Dev | Pay $5 at chrome.google.com/webstore/devconsole | Only if pursuing Chrome extension |
+| **Kalshi** | Sign up at kalshi.com, verify identity, deposit trading capital | 15 min |
+| **Polymarket** | Create account, set up crypto wallet, deposit USDC | 15 min |
+
+### If Running Product Strategies (#1 or #3)
+
+| Account | Action | Time |
+|---|---|---|
+| **Gumroad** | Sign up as seller at gumroad.com, connect payment | 5 min |
+
+### If Running SaaS Strategy (#4)
+
+| Account | Action | Time |
+|---|---|---|
+| **Stripe** | Sign up at stripe.com, complete verification | 10 min |
+| **Supabase** | Create project at supabase.com | 5 min |
+| **Vercel** | Sign up at vercel.com | 5 min |
+
+### For All Partners — API Keys
+
+| Service | What You Need | How to Get It |
+|---|---|---|
+| **Claude/Anthropic** | API key | console.anthropic.com → API Keys |
+| **Gmail** | OAuth or App Password | For email workflows in n8n |
+
+> Send your credentials to Jeff securely (Signal, etc.) so he can set them up in n8n.
 
 ---
 
-## Phase 1: Build the System (Claude Code — Week 1-3)
+## Phase 2: Build Your Strategies (Claude Code Sessions)
 
-### Claude Code Kickoff Prompt
+Each strategy is built in a Claude Code session. Jeff can run these for you, or you can run your own.
 
-Open a terminal on MiniDev and run `claude`. Paste this prompt:
+### Claude Code Kickoff Prompt (Template)
 
 ```
-I'm building the Money Maker 6-Month Compounding Machine. This is an
-automated income portfolio: $100 starting capital, 5 strategies, <1hr/week
-human time after initial build.
+I'm building my Money Maker stack. Read the CLAUDE.md first, then read
+Dashboard.md and my portfolio at [Jeff or Patrick]/Portfolio.md.
 
-This project has an Obsidian vault at /Users/jeffdev/dev/git/money-maker
-with a CLAUDE.md, strategy notes, and full architecture docs. Read the
-CLAUDE.md and Dashboard.md first to understand the project.
+I'm running [Strategy Name]. See the playbook at Strategies/[name].md.
 
-Today's task: Build the Daily Opportunity Researcher as an n8n workflow.
+Today's task: Build [specific component].
 
 Requirements:
-- n8n workflow triggered daily at 6:00 AM
-- Scans: Reddit (r/entrepreneurridealong, r/microsaas), Hacker News
-  (Show HN), Product Hunt, Gumroad trending, Kalshi new markets,
-  n8n community forum
-- Each opportunity scored by Claude (use claude -p via Execute Command
-  node to leverage Max subscription — see System/Architecture.md)
-- Scores: relevance, effort, revenue_potential, synergy, risk (each 0-10)
-- Output: Top 5 to Telegram, full list to Supabase
-- Update the Daily Researcher note in the vault when done
-
-IMPORTANT: For AI tasks in n8n, use the Execute Command node with
-"claude -p 'prompt here' --output-format json" instead of the Anthropic
-API node. This uses our Max subscription instead of pay-per-token billing.
+- This is for [Jeff/Patrick]'s stack
+- Name all n8n workflows with [Jeff/Patrick] prefix
+- Use [my API key / Execute Command with Max sub] for AI tasks
+- Update my Portfolio.md when done
 ```
 
-### Build Order
+### Build Order (Suggested — Adapt to Your Strategies)
 
-Follow this sequence. Each session is a Claude Code session:
-
-| Session | Day | What to Build | Strategy | Time |
-|---|---|---|---|---|
-| 1 | Day 1 | Daily Opportunity Researcher (n8n) | Meta-A | 2-3 hrs |
-| 2 | Day 2 | Kalshi weather bot (NOAA + Kelly + API) | Strategy 2 | 3-4 hrs |
-| 3 | Day 3 | Cross-platform arb scanner | Strategy 5 | 2-3 hrs |
-| 4 | Day 4 | First 3-5 Gumroad digital products | Strategy 1 | 2-3 hrs |
-| 5 | Day 5 | 2 n8n workflow templates | Strategy 3 | 1-2 hrs |
-| 6 | Day 8 | 3 more Gumroad products | Strategy 1 | 2 hrs |
-| 7 | Day 9-10 | Micro-SaaS MVP (contract analyzer) | Strategy 4 | 4-5 hrs |
-| 8 | Day 11 | Deploy SaaS to Vercel + Stripe | Strategy 4 | 2 hrs |
-| 9 | Day 12 | Monitoring dashboards + Telegram alerts | All | 2 hrs |
-| 10 | Day 15-19 | Polish, launch, start paper trading | All | 3 hrs |
+| Session | What to Build | Notes |
+|---|---|---|
+| 1 | Your first strategy's core automation | The main revenue-generating workflow |
+| 2 | Monitoring + alerts for strategy 1 | Telegram alerts, error handling |
+| 3 | Your second strategy's core automation | If you chose a second one |
+| 4 | Monitoring + alerts for strategy 2 | Telegram alerts, error handling |
+| 5 | Polish, test, optimize | Make everything robust |
 
 ### What the Human Does During Build Phase
 
 | When | What | Time |
 |---|---|---|
-| After Session 2 | Fund Kalshi account with $25 | 15 min |
-| After Session 3 | Fund Polymarket with $25 USDC | 15 min |
-| After Session 4 | Review Gumroad products, list them | 15 min |
-| After Session 7 | Review Micro-SaaS MVP, test it | 15 min |
-| Day 16 | Review paper trading results | 30 min |
-| Day 17 | Approve switching Kalshi bot to live | 10 min |
-| Day 15 | Post Micro-SaaS in 2-3 communities | 30 min |
-
-**Total human time during build phase:** ~3 hours over 3 weeks (front-loaded).
+| After each session | Review what was built, test it | 15 min |
+| When trading bots are ready | Fund trading accounts | 15 min |
+| When products are created | Review and list them | 15 min |
+| After all strategies built | Run through go-live checklist below | 30 min |
 
 ---
 
-## Phase 2: Go Live Checklist
+## Phase 3: Go Live Checklist
 
-Before declaring the system "live":
+Before declaring your stack "live":
 
-- [ ] Daily Researcher running daily at 6 AM
-- [ ] Kalshi bot paper trading (or live if profitable)
-- [ ] Arb scanner monitoring prices across platforms
-- [ ] At least 3 Gumroad products listed and live
-- [ ] At least 2 n8n templates listed on Gumroad
-- [ ] Micro-SaaS deployed and accepting signups
-- [ ] Telegram alerts working (test each one)
-- [ ] Portfolio monitoring dashboard sending weekly summary
-- [ ] All strategy notes in vault updated with "Active" status
-- [ ] [[Dashboard]] updated with current status
+- [ ] All chosen strategies have working n8n workflows
+- [ ] Telegram alerts are working (test each one)
+- [ ] Trading bots are paper trading (if applicable)
+- [ ] Products are listed and live (if applicable)
+- [ ] Your Portfolio.md is updated with "Active" status
+- [ ] Your Revenue Tracker is set up
+- [ ] You've done one manual weekly review cycle
 
 ---
 
-## Phase 3: Steady State
+## Phase 4: Steady State
 
 Once live, your weekly time commitment is:
 
 | Task | Time | Frequency |
 |---|---|---|
-| Review weekly Telegram digest | 10 min | Weekly |
+| Review Telegram digest | 10 min | Weekly |
 | Review Daily Researcher opportunities | 10 min | Weekly |
-| Approve/reject capital moves via Telegram | 5 min | As needed |
-| Update this vault's metrics | 5 min | Weekly |
+| Update your vault folder | 5 min | Weekly |
+| Share learnings to playbooks | 5 min | Weekly |
 | **Total** | **~30 min** | **Weekly** |
 
 See [[Weekly Review Checklist]] for the exact procedure.

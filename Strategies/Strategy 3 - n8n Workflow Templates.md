@@ -1,19 +1,14 @@
 # Strategy 3 — n8n Workflow Templates
 
+> **Shared Playbook** — Each partner sells templates on their own Gumroad account. Zero capital required.
 > **Consensus Score:** 9 pts | 3/5 panels | **Capital Required:** $0 | **Risk:** Very Low
 
 ---
 
-## Status
+## Partner Status
 
-| Field | Value |
-|---|---|
-| **Status** | Not Started |
-| **Capital Deployed** | $0 |
-| **Templates Live** | 0 |
-| **Revenue (Cumulative)** | $0 |
-| **Health Score** | -- |
-| **Last Updated** | Feb 19, 2026 |
+> Each partner tracks their own sales in their Revenue Tracker: [[Jeff/Revenue Tracker]] or [[Patrick/Revenue Tracker]].
+> Update this playbook with **shared learnings** — which template types sell, pricing insights, etc.
 
 ---
 

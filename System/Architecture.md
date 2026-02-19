@@ -1,6 +1,6 @@
 # System Architecture
 
-> How all the pieces fit together.
+> How all the pieces fit together. Shared infrastructure, independent execution.
 
 ---
 
@@ -8,85 +8,95 @@
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 HUMAN INTERFACE LAYER                    │
-│                                                         │
-│  Weekly Digest (Telegram)     Decision Queue (Telegram) │
-│  ├── Portfolio P&L summary    ├── Capital moves > $20   │
-│  ├── Strategy health scores   ├── New strategy proposals│
-│  ├── Top 3 opportunities      ├── Strategy kill decisions│
-│  ├── A/B test results         └── Pricing changes       │
-│  └── System health / costs                              │
+│              SHARED INTELLIGENCE LAYER                    │
+│                                                          │
+│  Daily Researcher → scores opportunities for all partners│
+│  Research Archive → 6 domains, 5 expert panels           │
+│  Strategy Playbooks → shared how-to guides               │
+│  Obsidian Vault → shared knowledge base                  │
 └────────────────────────┬────────────────────────────────┘
                          ↓
+┌───────────────────────────┬─────────────────────────────┐
+│   JEFF'S STACK            │   PATRICK'S STACK           │
+│                           │                              │
+│  [Jeff] Kalshi Bot        │  [Patrick] Kalshi Bot       │
+│  [Jeff] Gumroad Tracker   │  [Patrick] Gumroad Tracker  │
+│  [Jeff] Sales Alerts      │  [Patrick] Sales Alerts     │
+│  [Jeff] P&L Dashboard     │  [Patrick] P&L Dashboard    │
+│                           │                              │
+│  Jeff's API keys          │  Patrick's API keys         │
+│  Jeff's accounts          │  Patrick's accounts         │
+│  Jeff's revenue           │  Patrick's revenue          │
+└───────────────┬───────────┴──────────────┬──────────────┘
+                ↓                           ↓
 ┌─────────────────────────────────────────────────────────┐
-│                META-STRATEGY LAYER                       │
-│                                                         │
-│  Daily Researcher → Portfolio Rebalancer → A/B Testing  │
-│  (scans 20+ sources) (fractional Kelly)  (month 2-3)   │
-└────────────────────────┬────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│                REVENUE STRATEGIES                        │
-│                                                         │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │
-│  │ Gumroad  │ │ Kalshi   │ │ n8n      │ │ Micro-   │  │
-│  │ Products │ │ Weather  │ │ Templates│ │ SaaS     │  │
-│  │          │ │ Bot      │ │          │ │          │  │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │
-│                    ┌──────────┐                         │
-│                    │ Pred Mkt │                         │
-│                    │ Arb      │                         │
-│                    └──────────┘                         │
-└────────────────────────┬────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│                INFRASTRUCTURE                            │
-│                                                         │
-│  n8n (Mac Mini) │ Vercel │ Supabase │ Claude API       │
-│  Telegram       │ Gmail  │ Obsidian │ Tailscale        │
+│              SHARED INFRASTRUCTURE                        │
+│                                                          │
+│  n8n (Mac Mini) │ Tailscale │ Git/GitHub │ Obsidian     │
+│  (both partners' workflows run here)                     │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ## Infrastructure Components
 
-| Component | Role | Host | Cost |
-|---|---|---|---|
-| **n8n** | Automation backbone (all workflows) | Mac Mini (MiniDev) | $0 (self-hosted) |
-| **Vercel** | Hosting for Micro-SaaS + landing pages | Cloud (free tier) | $0 |
-| **Supabase** | Database, auth, storage | Cloud (free tier) | $0 |
-| **Claude API** | Intelligence layer for scoring, analysis, content | Cloud | $8-$40/month |
-| **Telegram** | Alerts, human I/O, daily digests | Cloud | $0 |
-| **Gmail** | Email delivery, notifications | Cloud (via n8n OAuth) | $0 |
-| **Obsidian** | Knowledge base (this vault) | Local + Git sync | $0 |
-| **Tailscale** | Remote access to Mac Mini | Cloud + local | $0 |
-| **Mac Mini** | Always-on compute for bots + n8n | Local (MiniDev) | $0 (already running) |
-
-## n8n Workflow Inventory
-
-| # | Workflow | Purpose | Strategy | Status |
+| Component | Role | Host | Cost | Shared? |
 |---|---|---|---|---|
-| 1 | Daily Opportunity Scanner | Scrape + score opportunities | Meta-A | Not Built |
-| 2 | Weekly Opportunity Digest | Compile top opportunities | Meta-A | Not Built |
-| 3 | Gumroad Sales Tracker | Log sales to Supabase | Strategy 1 | Not Built |
-| 4 | Social Promotion Engine | Generate + post content | Strategy 1 | Not Built |
-| 5 | Product Idea Generator | Trending search → ideas | Strategy 1 | Not Built |
-| 6 | Kalshi Data Collector | Weather + market prices | Strategy 2 | Not Built |
-| 7 | Kalshi Trade Alerts | Telegram per trade | Strategy 2 | Not Built |
-| 8 | Kalshi Daily P&L | Daily profit/loss summary | Strategy 2 | Not Built |
-| 9 | SaaS Usage Monitor | Check limits approaching | Strategy 4 | Not Built |
-| 10 | SaaS Onboarding Drip | Day 0/1/3/7 emails | Strategy 4 | Not Built |
-| 11 | SaaS Revenue Dashboard | Stripe data → Supabase | Strategy 4 | Not Built |
-| 12 | Arb Price Scanner | Multi-platform scanning | Strategy 5 | Not Built |
-| 13 | Arb Trade Alerts | Execution + settlement | Strategy 5 | Not Built |
-| 14 | Portfolio Weekly Summary | Aggregate all revenue | Meta-C | Not Built |
+| **n8n** | Automation backbone (all workflows) | Mac Mini (MiniDev) | $0 (self-hosted) | Shared infra |
+| **Vercel** | Hosting for SaaS + landing pages | Cloud (free tier) | $0 | Each partner's own projects |
+| **Supabase** | Database, auth, storage | Cloud (free tier) | $0 | Each partner's own projects |
+| **Claude API** | Intelligence layer | Cloud | Per-partner | Each pays own |
+| **Telegram** | Alerts, human I/O, digests | Cloud | $0 | Separate channels per partner |
+| **Gmail** | Email delivery | Cloud (via n8n) | $0 | Each partner's own credentials |
+| **Obsidian** | Knowledge base (this vault) | Local + Git sync | $0 | Shared |
+| **Tailscale** | Remote access to Mac Mini | Cloud + local | $0 | Jeff manages |
+| **Mac Mini** | Always-on compute | Local (MiniDev) | $0 (already running) | Jeff hosts |
+
+## n8n Multi-Partner Setup
+
+### Credential Management
+
+Each partner has their own credential sets in n8n:
+
+| Credential | Jeff's | Patrick's |
+|---|---|---|
+| Gmail OAuth | `Jeff - Gmail` (ID: KZAK2kvzgPUiEBZY) | `Patrick - Gmail` (pending setup) |
+| Kalshi API | `Jeff - Kalshi` (pending setup) | `Patrick - Kalshi` (pending setup) |
+| Gumroad | `Jeff - Gumroad` (pending setup) | `Patrick - Gumroad` (pending setup) |
+| Claude API | Uses Max CLI (`claude -p`) | `Patrick - Anthropic` (pending setup) |
+| Polymarket | `Jeff - Polymarket` (pending setup) | `Patrick - Polymarket` (pending setup) |
+
+### Workflow Naming Convention
+
+```
+[Jeff] Strategy Name - Component
+[Patrick] Strategy Name - Component
+[Shared] Daily Researcher
+[Shared] System Heartbeat
+```
+
+### Workflow Inventory
+
+| # | Workflow | Owner | Purpose | Status |
+|---|---|---|---|---|
+| 1 | [Shared] Daily Opportunity Scanner | Both | Scrape + score opportunities | Not Built |
+| 2 | [Shared] Weekly Opportunity Digest | Both | Compile top opportunities | Not Built |
+| 3 | [Shared] System Heartbeat | Jeff | n8n health check | Not Built |
+| -- | **Per-Partner Workflows** | | *(built when partner activates a strategy)* | |
+| 4+ | [Name] Gumroad Sales Tracker | Per-partner | Log sales | Not Built |
+| 5+ | [Name] Kalshi Data Collector | Per-partner | Weather + market data | Not Built |
+| 6+ | [Name] Kalshi Trade Bot | Per-partner | Execute trades | Not Built |
+| 7+ | [Name] Trade Alerts | Per-partner | Telegram per trade | Not Built |
+| 8+ | [Name] SaaS Monitor | Per-partner | Usage + revenue | Not Built |
+| 9+ | [Name] Arb Scanner | Per-partner | Multi-platform price scanning | Not Built |
+| 10+ | [Name] Portfolio Summary | Per-partner | Weekly revenue digest | Not Built |
 
 ## Data Flows
 
-### Revenue Tracking
-All strategies → Supabase `revenue` table → Portfolio Weekly Summary → Telegram digest + this vault
+### Shared Intelligence Flow
+Daily Scanner → scored opportunities → Obsidian vault + Telegram → Both partners review independently → Each makes own decisions
 
-### Opportunity Pipeline
-Daily Scanner → scored opportunities → Supabase `opportunities` table → Weekly digest → Human review → Decision Log
+### Per-Partner Revenue Flow
+Partner's workflows → Partner's accounts → Partner's Supabase/tracking → Partner's Telegram digest → Partner's Revenue Tracker in vault
 
-### Trading Operations
-NOAA data + Kalshi prices → Analysis → Trade execution → Trade log → Daily P&L → Weekly metrics
+### Per-Partner Trading Flow
+Market data → Partner's analysis workflow → Partner's trading account → Partner's trade log → Partner's P&L digest

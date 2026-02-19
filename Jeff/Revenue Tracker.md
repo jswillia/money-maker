@@ -1,19 +1,21 @@
-# Revenue Tracker
+# Jeff's Revenue Tracker
 
-> Master revenue tracking across all strategies. Updated weekly during [[Weekly Review Checklist]].
+> Jeff's personal revenue tracking across all active strategies. Updated weekly.
 
 ---
 
 ## Monthly Summary
 
-| Month | Gumroad | Kalshi | Templates | SaaS MRR | Arb | Total Revenue | Total Costs | Net | Running Total |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | | | | | | | | | |
-| 2 | | | | | | | | | |
-| 3 | | | | | | | | | |
-| 4 | | | | | | | | | |
-| 5 | | | | | | | | | |
-| 6 | | | | | | | | | |
+| Month | Strategy 1 | Strategy 2 | Strategy 3 | Total Revenue | Total Costs | Net | Running Total |
+|---|---|---|---|---|---|---|---|
+| 1 | | | | | | | |
+| 2 | | | | | | | |
+| 3 | | | | | | | |
+| 4 | | | | | | | |
+| 5 | | | | | | | |
+| 6 | | | | | | | |
+
+> Replace "Strategy 1/2/3" headers with your actual active strategies.
 
 ---
 
@@ -23,11 +25,7 @@
 
 | Strategy | Revenue | Costs | Net | Notes |
 |---|---|---|---|---|
-| Gumroad Products | $0 | $0 | $0 | |
-| Kalshi Bot | $0 | $0 | $0 | |
-| n8n Templates | $0 | $0 | $0 | |
-| AI Micro-SaaS | $0 | $0 | $0 | |
-| Prediction Arb | $0 | $0 | $0 | |
+| | | | | |
 | Infrastructure | -- | $0 | -$0 | Claude API, domains, etc. |
 | **Total** | **$0** | **$0** | **$0** | |
 
@@ -37,7 +35,7 @@
 
 | Item | Monthly Cost | Running Total | Notes |
 |---|---|---|---|
-| Claude API | $0 | $0 | |
+| Claude API (beyond Max) | $0 | $0 | |
 | Vercel | $0 | $0 | Free tier |
 | Supabase | $0 | $0 | Free tier |
 | Domain(s) | $0 | $0 | |
@@ -49,8 +47,7 @@
 
 | Pool | Original | Current | Change | Notes |
 |---|---|---|---|---|
-| Trading (Kalshi) | $25 | $25 | $0 | |
-| Trading (Arb) | $25 | $25 | $0 | |
+| Trading capital | $50 | $50 | $0 | |
 | API Credits | $10 | $10 | $0 | |
 | Reserve | $35 | $35 | $0 | |
 | Revenue Reinvested | $0 | $0 | $0 | |

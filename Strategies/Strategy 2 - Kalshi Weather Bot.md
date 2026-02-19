@@ -1,20 +1,14 @@
 # Strategy 2 — Kalshi Weather Prediction Market Bot
 
+> **Shared Playbook** — Each partner runs their own bot on their own Kalshi account with their own capital.
 > **Consensus Score:** 11 pts | 3/5 panels | **Capital Required:** $25-$50 | **Risk:** Moderate
 
 ---
 
-## Status
+## Partner Status
 
-| Field | Value |
-|---|---|
-| **Status** | Not Started |
-| **Capital Deployed** | $0 |
-| **Bankroll** | $0 |
-| **Win Rate** | -- |
-| **Total P&L** | $0 |
-| **Health Score** | -- |
-| **Last Updated** | Feb 19, 2026 |
+> Each partner tracks their own P&L in their Revenue Tracker: [[Jeff/Revenue Tracker]] or [[Patrick/Revenue Tracker]].
+> Update this playbook with **shared learnings** — which weather patterns are profitable, optimal bet sizing, etc.
 
 ---
 

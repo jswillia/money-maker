@@ -1,20 +1,14 @@
 # Strategy 5 — Cross-Platform Prediction Market Arbitrage
 
+> **Shared Playbook** — Each partner runs their own arb bot on their own Polymarket/Kalshi accounts.
 > **Consensus Score:** 7 pts | 2/5 panels | **Capital Required:** $25-$50 | **Risk:** Low-Moderate
 
 ---
 
-## Status
+## Partner Status
 
-| Field | Value |
-|---|---|
-| **Status** | Not Started |
-| **Capital Deployed** | $0 |
-| **Total P&L** | $0 |
-| **Arbs Executed** | 0 |
-| **Avg Spread Captured** | -- |
-| **Health Score** | -- |
-| **Last Updated** | Feb 19, 2026 |
+> Each partner tracks their own arb P&L in their Revenue Tracker: [[Jeff/Revenue Tracker]] or [[Patrick/Revenue Tracker]].
+> Update this playbook with **shared learnings** — which markets have arb opportunities, execution timing, etc.
 
 ---
 

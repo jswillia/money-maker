@@ -1,19 +1,14 @@
 # Strategy 1 — Gumroad Digital Product Empire
 
+> **Shared Playbook** — Either partner can follow this guide independently using their own Gumroad account.
 > **Consensus Score:** 12 pts | 3/5 panels | **Capital Required:** $0 | **Risk:** Low
 
 ---
 
-## Status
+## Partner Status
 
-| Field | Value |
-|---|---|
-| **Status** | Not Started |
-| **Capital Deployed** | $0 |
-| **Revenue (Cumulative)** | $0 |
-| **Products Live** | 0 |
-| **Health Score** | -- |
-| **Last Updated** | Feb 19, 2026 |
+> Each partner tracks their own status in their Portfolio note: [[Jeff/Portfolio]] or [[Patrick/Portfolio]].
+> Update this playbook with **shared learnings** — what works, what doesn't, pricing insights, etc.
 
 ---
 

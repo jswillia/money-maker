@@ -1,403 +1,305 @@
 # Operations Guide
 
-> The master document for how this project works, how to run it, and what you need to do as a human. Read this first.
+> The master document for how this project works and how partners collaborate. Read this first.
 
 ---
 
 ## Table of Contents
 
 1. [[#How This All Works]]
-2. [[#Partner Architecture — Sharing With a Friend]]
-3. [[#Using Claude Max Instead of API Fees]]
-4. [[#Human Responsibilities]]
-5. [[#How to Launch (Claude Code Prompt)]]
-6. [[#Maintenance and Monitoring]]
-7. [[#Keeping the System Running]]
-8. [[#Cost Breakdown]]
-9. [[#Escalation Procedures]]
+2. [[#Partner Model — Shared Intelligence, Independent Execution]]
+3. [[#What's Shared vs What's Independent]]
+4. [[#n8n — Shared Infrastructure, Separate Credentials]]
+5. [[#Using Claude Max Instead of API Fees]]
+6. [[#Human Responsibilities]]
+7. [[#How to Launch (Claude Code Prompt)]]
+8. [[#Maintenance and Monitoring]]
+9. [[#Keeping the System Running]]
+10. [[#Escalation Procedures]]
 
 ---
 
 ## How This All Works
 
-You have $100. Claude Code builds 5 automated revenue strategies. n8n runs them 24/7 on your Mac Mini. A daily opportunity researcher scans the internet for new ideas. A portfolio rebalancer shifts capital to winners. You spend 30 minutes per week reviewing a Telegram digest and approving decisions.
+Two partners (Jeff and Patrick) each invest $100. Claude Code builds automated revenue strategies. n8n runs them 24/7 on Jeff's Mac Mini. A daily opportunity researcher scans the internet for new ideas. Each partner independently chooses which strategies to pursue, manages their own capital, and keeps 100% of their own revenue.
 
-**The 5 strategies:**
+**The shared intelligence layer** means both partners benefit from:
+- All research (6 research domains, 5 expert panels)
+- Strategy playbooks (detailed guides for 5 proven strategies)
+- Daily Opportunity Researcher (one scanner, both benefit)
+- This Obsidian vault (shared knowledge base)
+- Each other's learnings (what worked, what didn't)
 
-| # | Strategy | Revenue Type | Risk | Capital |
-|---|---|---|---|---|
-| 1 | Gumroad Digital Products | Product sales | Low | $0 |
-| 2 | Kalshi Weather Bot | Trading profits | Moderate | $25 |
-| 3 | n8n Workflow Templates | Template sales | Very Low | $0 |
-| 4 | AI Micro-SaaS | MRR subscriptions | Moderate | $0-$35 |
-| 5 | Prediction Market Arb | Arb spreads | Low-Moderate | $25 |
-
-**The adaptive layer:**
-- Daily Researcher scans 20+ sources, scores opportunities
-- Portfolio Rebalancer suggests capital moves weekly
-- Health Scoring detects failing strategies automatically
-
-See [[Architecture]] for full technical details.
+**Independent execution** means:
+- You pick which strategies to run
+- You fund your own accounts
+- You supply your own API keys
+- You keep 100% of your revenue
+- You manage your own capital allocation
 
 ---
 
-## Partner Architecture — Sharing With a Friend
+## Partner Model — Shared Intelligence, Independent Execution
 
-### Recommended Setup: Shared Infrastructure, Separate Capital
+### Why This Model?
 
-Your friend does NOT need their own Mac Mini, n8n instance, or Vercel deployment. Everything runs on your infrastructure. Here's how it works:
+| Model | Problem |
+|---|---|
+| ~~Shared everything, split 50/50~~ | Disagreements on strategy priority, unequal effort, messy accounting |
+| ~~Completely separate projects~~ | Duplicated research, no learning from each other |
+| **Shared intelligence + independent execution** | Best of both worlds: learn together, execute independently |
 
-### What's Shared (Jeff Hosts)
+### How It Works
+
+```
+SHARED (benefits both)          INDEPENDENT (yours alone)
+─────────────────────           ──────────────────────────
+Research reports                Your choice of strategies
+Strategy playbooks              Your capital allocation
+Daily Opportunity Researcher    Your accounts (Kalshi, Gumroad, etc.)
+Obsidian vault                  Your API keys and credentials
+n8n infrastructure              Your n8n workflows (your creds)
+System architecture docs        Your revenue (100%)
+Each other's learnings          Your decision-making
+```
+
+### Real Example
+
+Both partners read the Gumroad Digital Products playbook. Jeff decides to build AI prompt packs. Patrick decides to build Notion templates. Each uses their own Gumroad account. Each keeps their own revenue. Both update the shared playbook with what they learn (e.g., "Notion templates sell better priced at $7 vs $12").
+
+---
+
+## What's Shared vs What's Independent
+
+### Shared (Jeff Hosts)
 
 | Resource | Details |
 |---|---|
-| **n8n** | All workflows run on your Mac Mini. One set of workflows serves both partners. |
-| **Vercel** | One Micro-SaaS deployment. One Gumroad storefront. |
-| **Supabase** | One database with partner-tagged records for revenue tracking. |
-| **Obsidian Vault** | This vault, shared via git. Both partners can read/update. |
-| **Daily Researcher** | One researcher serves both — opportunities are portfolio-wide. |
-| **Claude Code** | You run build sessions. Both partners benefit from what's built. |
+| **n8n** | All workflows run on Jeff's Mac Mini. Each partner's workflows use their own credentials. |
+| **Obsidian Vault** | This vault, shared via git. Both partners read/write. |
+| **Daily Researcher** | One opportunity scanner serves both — shared intelligence. |
+| **Research** | All research reports in `Research/` benefit everyone. |
+| **Strategy Playbooks** | Shared "how to" guides in `Strategies/` — either partner can follow. |
 
-### What's Separate (Each Partner Owns)
+### Independent (Each Partner Owns)
 
-| Resource | Why Separate |
+| Resource | Details |
 |---|---|
-| **Kalshi account** | Regulatory requirement — each person must have their own trading account |
-| **Polymarket account** | Same — each person's own crypto wallet |
-| **Trading capital ($50 each)** | Each partner's $50 trades in their own account |
-| **Trading P&L** | Belongs to whoever's capital generated it |
+| **Strategies** | Each partner chooses which playbooks to run. Can overlap — that's fine. |
+| **Capital ($100)** | Each partner's $100 is entirely their own. No shared pools. |
+| **Accounts** | Own Kalshi, Polymarket, Gumroad, Stripe, etc. accounts |
+| **API Keys** | Own Claude API key (or use Jeff's Max subscription if Jeff agrees) |
+| **Revenue** | 100% yours from your strategies |
+| **n8n Workflows** | Your workflows, your credentials. Prefixed with your name: `[Jeff]` or `[Patrick]` |
+| **Tracking** | Own `Portfolio.md`, `Revenue Tracker.md`, `Decision Log.md` in your folder |
 
-### Revenue Split
+---
 
-| Revenue Source | Split | Reasoning |
-|---|---|---|
-| Gumroad product sales | **50/50** | Shared storefront, products built by shared Claude Code |
-| Micro-SaaS subscriptions | **50/50** | Shared deployment, shared infrastructure |
-| n8n template sales | **50/50** | Products of shared build effort |
-| Kalshi trading profits | **100% to account holder** | Each person's own capital and account |
-| Prediction market arb profits | **100% to account holder** | Same |
+## n8n — Shared Infrastructure, Separate Credentials
 
-### Cost Sharing
+### How Multi-Partner n8n Works
 
-| Cost | Who Pays | Amount |
-|---|---|---|
-| Infrastructure (Mac Mini, n8n) | **Jeff** | $0 (already running) |
-| Claude API (if used beyond Max) | **50/50** | ~$4-20/month each |
-| Domain costs | **50/50** | ~$6/year each |
-| Vercel (if upgraded from free) | **50/50** | $10/month each |
-| Trading capital | **Each their own** | $50 each |
-
-### How the Partner Gets Set Up
-
-1. **Clone the git repo** — `git clone` gives them the vault + all code
-2. **Open in Obsidian** — they see the same Dashboard, strategies, and logs
-3. **Create their own trading accounts** — Kalshi + Polymarket
-4. **Send Jeff their account details** — so trading bots can be configured for their accounts
-5. **Venmo/Zelle monthly API cost share** — if any API costs exceed Max subscription
-
-### How the Partner Monitors Their Portfolio
-
-Same as you: weekly Telegram digest, vault updates, approve/reject via Telegram. You can set up a separate Telegram bot or channel for each partner.
-
-### Git Workflow for Sharing
+n8n runs on Jeff's Mac Mini. Both partners have workflows on the same instance, but each workflow uses the owner's credentials.
 
 ```
-Both partners clone the same repo:
-  git clone <repo-url>
-
-Jeff pushes updates (new builds, research, vault updates):
-  git add . && git commit -m "description" && git push
-
-Partner pulls updates:
-  git pull
-
-Partner updates their own portfolio note:
-  # Edit Partners/Partner - Portfolio.md
-  git add . && git commit -m "Update portfolio numbers" && git push
+n8n Instance (Jeff's Mac Mini)
+├── [Jeff] Kalshi Weather Bot      → Jeff's Kalshi API key
+├── [Jeff] Gumroad Sales Tracker   → Jeff's Gumroad token
+├── [Jeff] Daily P&L               → Jeff's Gmail OAuth
+├── [Patrick] Kalshi Weather Bot   → Patrick's Kalshi API key
+├── [Patrick] Gumroad Tracker      → Patrick's Gumroad token
+├── [Patrick] Sales Alerts         → Patrick's Gmail/App Password
+└── [Shared] Daily Researcher      → Jeff's credentials (shared benefit)
 ```
+
+### Setting Up Patrick's Credentials in n8n
+
+1. Patrick generates API keys for each service (see [[Patrick/Portfolio|Patrick's Portfolio]])
+2. Patrick sends credentials to Jeff securely (Signal, encrypted email, etc.)
+3. Jeff creates credential entries in n8n named with Patrick's prefix: `Patrick - Kalshi API`, `Patrick - Gmail`, etc.
+4. Jeff's Claude Code sessions build workflows using Patrick's credentials where appropriate
+
+### Workflow Naming Convention
+
+All n8n workflows include a partner prefix:
+- `[Jeff] Kalshi Weather Bot`
+- `[Patrick] Kalshi Weather Bot`
+- `[Shared] Daily Opportunity Scanner`
 
 ---
 
 ## Using Claude Max Instead of API Fees
 
-### The Discovery
+### Jeff's Approach (Max Subscription)
 
-Your Claude Max subscription ($100-$200/month) includes unlimited Claude Code CLI access. The Claude Code CLI can be invoked non-interactively from n8n using `claude -p "prompt"`. This bills against your Max subscription quota — **not** per-token API charges.
-
-### How It Works in n8n
-
-Instead of using n8n's built-in "Anthropic" node (which requires a separate API key + pay-per-token billing), use the **Execute Command** node:
+Jeff's Claude Max subscription ($100-$200/month) includes Claude Code CLI access. For Jeff's workflows, use the **Execute Command** node:
 
 ```bash
-claude -p "Score this opportunity for our portfolio: {{$json.description}}" --output-format json
+claude -p "Score this opportunity" --output-format json --model sonnet
 ```
 
-Or via SSH (if n8n runs on a different machine than Claude Code):
+This bills against Jeff's Max subscription — **not** per-token API charges.
 
-```bash
-ssh jeffdev@100.96.240.11 'claude -p "Your prompt here" --output-format json'
-```
+### Patrick's Approach (Own API Key)
 
-### Three Options (Ranked)
+Patrick has two options:
 
-| Option | Setup | Pros | Cons |
-|---|---|---|---|
-| **1. Execute Command node** | Install Claude Code on n8n host | Simplest. Direct. Fast. | n8n and Claude Code must be on same machine. |
-| **2. SSH node** | n8n SSHes to MiniDev | Works if n8n is elsewhere. | Slight latency. SSH key setup. |
-| **3. Community node** | Install `@johnlindquist/n8n-nodes-claudecode` | Cleanest UI. Session persistence. MCP support. | Third-party dependency. |
+| Option | Pros | Cons |
+|---|---|---|
+| **Own Claude API key** | Full independence, clear billing | Pay-per-token (~$5-15/month for this project) |
+| **Use Jeff's Max sub** | Free for Patrick | Consumes Jeff's quota; need Jeff to set up |
 
-### Recommended Approach
+**Recommended:** Patrick starts with his own API key for independence. If costs are too high, discuss sharing Jeff's Max subscription.
 
-Since both n8n and Claude Code are on MiniDev, **Option 1 (Execute Command)** is simplest:
+For Patrick's workflows with his own API key, use the standard **Anthropic** node in n8n (not Execute Command).
 
-```
-n8n Execute Command node:
-  Command: claude -p '{{ $json.prompt }}' --output-format json --model sonnet
-  Timeout: 60000
-```
-
-**Use Sonnet, not Opus** for automation — it's faster, cheaper on quota, and sufficient for scoring/analysis tasks.
-
-### Quota Management
+### Quota Management (Jeff's Max)
 
 | Plan | Messages per 5-hour window | Implication |
 |---|---|---|
-| Max 5x ($100/mo) | ~225 messages | Budget: ~45 messages/hour. Daily Researcher uses ~25. Leaves plenty for interactive use. |
-| Max 20x ($200/mo) | ~900 messages | Abundant. No concerns for this project. |
-
-### Hybrid Approach (If Quota Gets Tight)
-
-For high-volume, simple tasks (like classifying 50 Reddit posts), use Claude Haiku via the API at ~$0.25/MTok. For complex analysis, use Max CLI. Total API cost: $1-3/month.
-
-### Key Technical Details
-
-- Claude Code is installed at: `/Users/jeffdev/.claude/` (MiniDev)
-- Authenticated with Max subscription (no `ANTHROPIC_API_KEY` env var set)
-- Use `--output-format json` for machine-readable output
-- Use `--model sonnet` to conserve quota (Sonnet is sufficient for automation)
-- Full research: [[Using Claude Max Subscription with n8n — Research]] (in Hobby vault)
+| Max 5x ($100/mo) | ~225 messages | Budget: ~45/hour. Shared Daily Researcher uses ~25/day. Leaves plenty for interactive use. |
+| Max 20x ($200/mo) | ~900 messages | Abundant. No concerns. |
 
 ---
 
 ## Human Responsibilities
 
-### Your Role: Board Member, Not Operator
+### Each Partner's Role: Board Member, Not Operator
 
-After the 3-week build phase, your role is:
-- **Review** weekly digest (10 min)
+After your strategies are built, your weekly role is:
+- **Review** your Telegram digest (10 min)
 - **Decide** on capital moves, new strategies, kills (10 min)
-- **Approve** what the system recommends (5 min)
-- **Update** this vault with actuals (5 min)
+- **Update** your vault folder with actuals (5 min)
+- **Share learnings** — update strategy playbooks with what you discover (5 min)
 
-You are NOT:
-- Writing code (Claude Code does this)
-- Running workflows manually (n8n does this)
-- Monitoring dashboards daily (Telegram alerts handle this)
-- Creating products (Claude Code creates them)
-
-### Weekly Time Budget: 30 Minutes
+### Weekly Time Budget: 30 Minutes Per Partner
 
 | Task | Time | When |
 |---|---|---|
-| Read Telegram digest | 10 min | Sunday |
+| Read your Telegram digest | 10 min | Sunday |
 | Review opportunities, approve/reject | 10 min | Sunday |
-| Update vault metrics | 5 min | Sunday |
-| Handle any alerts | 5 min | As needed |
-
-### Monthly Additions: +15 Minutes
-
-| Task | Time | When |
-|---|---|---|
-| Monthly revenue summary | 5 min | 1st Sunday |
-| Partner cost reconciliation | 5 min | 1st Sunday |
-| Strategy kill/add review | 5 min | 1st Sunday |
+| Update your vault folder (portfolio, revenue) | 5 min | Sunday |
+| Share learnings to playbooks | 5 min | Sunday |
 
 ### Things That Require Your Intervention
 
 | Event | What You Do | Urgency |
 |---|---|---|
-| Telegram: "Strategy health < 40" | Review strategy, decide: investigate or kill | Within 48 hours |
-| Telegram: "n8n heartbeat missed" | Check Mac Mini (is it on? is n8n running?) | Within 24 hours |
+| Telegram: "Strategy health < 40" | Review your strategy, decide: investigate or kill | Within 48 hours |
+| Telegram: "n8n heartbeat missed" | Jeff checks Mac Mini | Within 24 hours |
 | Telegram: "Drawdown > 30%" | Bot auto-paused. Review and decide: resume or kill | Within 48 hours |
-| Telegram: "Capital move > $20 requested" | Review and approve/reject | Within 1 week |
-| Partner asks a question | Answer or point to vault docs | As needed |
+| Partner shares a learning | Read it, consider applying to your strategies | Next weekly review |
 
 ---
 
 ## How to Launch (Claude Code Prompt)
 
-### Step 1: Open the Vault in Obsidian
+### Step 1: Choose Your Strategies
 
-1. Open Obsidian
-2. Click "Open another vault" (bottom left)
-3. Select "Open folder as vault"
-4. Navigate to `/Users/jeffdev/dev/git/money-maker/`
-5. Click "Open"
-6. You should see the Dashboard as your home page
+Read the playbooks in `Strategies/` and decide which ones to pursue. You don't have to run all 5. Start with 1-2 and add more later.
 
-### Step 2: Set Up Accounts (Human — 45 min)
+### Step 2: Set Up Accounts
 
-Follow [[Getting Started#Phase 0 Account Setup Human — 45 min one-time]]
+Based on the strategies you chose, create the necessary accounts (see your `Portfolio.md`).
 
 ### Step 3: Start Building (Claude Code)
 
-Open terminal on MiniDev. Run `claude`. Start with this prompt:
+Open terminal. Run `claude`. Start with this prompt (adjust for your name and strategies):
 
 ```
-I'm starting the Money Maker project. Read /Users/jeffdev/dev/git/money-maker/CLAUDE.md
-first, then read Dashboard.md and the Operations Guide.
+I'm starting my Money Maker stack. Read the CLAUDE.md first, then read
+Dashboard.md and my portfolio at [Jeff/Portfolio.md or Patrick/Portfolio.md].
 
-Start with Session 1: Build the Daily Opportunity Researcher as an n8n workflow.
-See System/Daily Researcher.md for the full specification.
+I've chosen to start with [Strategy X] and [Strategy Y].
 
-Key requirement: For all AI tasks in n8n, use Execute Command node with
-"claude -p 'prompt' --output-format json --model sonnet" instead of the
-Anthropic API node. This uses our Max subscription.
+Build the first strategy: [Strategy X]. See the playbook at
+Strategies/[strategy name].md for implementation details.
 
-After building, update the relevant vault notes with the current status.
+Key requirements:
+- This is for [Jeff/Patrick]'s independent stack
+- Name all n8n workflows with [Jeff/Patrick] prefix
+- Use [my credentials / Execute Command with Max sub] for AI tasks
+- Update my Portfolio.md and Revenue Tracker when done
 ```
 
-Each subsequent session, point Claude Code at the next task from [[Getting Started#Build Order]].
+### Step 4: Repeat for Each Strategy
 
-### Step 4: Go Live
-
-Follow [[Getting Started#Phase 2 Go Live Checklist]]
+Each Claude Code session, build the next strategy from your chosen list. Update your portfolio after each session.
 
 ---
 
 ## Maintenance and Monitoring
 
-### Automated Monitoring (You Don't Touch This)
+### Automated Monitoring (Per Partner)
 
-| Monitor | Frequency | Alert Channel | Trigger |
-|---|---|---|---|
-| n8n heartbeat | Every hour | Telegram | Missed heartbeat = system down |
-| Kalshi bot P&L | Every trade + daily summary | Telegram | Every trade, daily P&L |
-| Arb scanner | Continuous | Telegram | On arb execution |
-| SaaS errors | Every 15 min | Telegram | Any 5xx error |
-| Workflow failures | On failure | Telegram | Any n8n workflow error |
-| Cost tracking | Daily | Supabase + weekly digest | Daily log |
+Each partner gets their own monitoring workflows:
 
-### Manual Monitoring (Your Weekly Review)
+| Monitor | What It Watches | Alert Channel |
+|---|---|---|
+| Trading bot P&L | Your bot, your account | Your Telegram |
+| Sales tracker | Your Gumroad/Stripe | Your Telegram |
+| Workflow failures | Your workflows | Your Telegram |
 
-See [[Weekly Review Checklist]] for the exact procedure.
+### Shared Monitoring (Jeff Manages)
+
+| Monitor | Frequency | What It Checks |
+|---|---|---|
+| n8n heartbeat | Hourly | Is the shared n8n instance running? |
+| Daily Researcher | Daily | Did the opportunity scanner run? |
+| System health | Weekly | Mac Mini, Tailscale, storage |
 
 ### What Breaks and How to Fix It
 
-| Problem | Symptom | Fix |
+| Problem | Who Fixes | How |
 |---|---|---|
-| n8n stopped | No Telegram heartbeat for 2+ hours | SSH to MiniDev: `pm2 restart n8n` or check if Mac Mini restarted |
-| Trading bot losing money | Drawdown alert in Telegram | Bot auto-pauses at 30%. Review [[Strategy 2 - Kalshi Weather Bot]] trading log. Decide: tune parameters or kill. |
-| Gumroad products not selling | Zero sales after 3 weeks | Don't panic. Check: are products discoverable? Try different titles/descriptions. Build different product types. |
-| SaaS not getting users | <50 users after Month 2 | Distribution problem. Post in different communities. Try Product Hunt launch. Ask Claude Code to improve landing page. |
-| API costs spiking | Cost tracking shows >$20/month | Switch more workflows to Max CLI (`claude -p`). Use Haiku for simple tasks. Add caching. |
-| Vault out of sync (partner) | Git conflicts | `git pull --rebase` then resolve conflicts. Strategy/log notes should rarely conflict if partners update their own sections. |
-
-### When to Escalate to Claude Code
-
-Start a new Claude Code session when:
-- A strategy needs new features or bug fixes
-- You want to add a new strategy (from the opportunity log)
-- n8n workflows need modification
-- The Micro-SaaS needs updates based on user feedback
-- You want to create new Gumroad products
-
-Always point Claude Code at the vault first:
-```
-Read /Users/jeffdev/dev/git/money-maker/CLAUDE.md and the relevant
-strategy note before making changes.
-```
+| n8n stopped | Jeff | SSH to MiniDev: `pm2 restart n8n` |
+| Your trading bot losing money | You | Bot auto-pauses at 30% drawdown. Review trading log. |
+| Your products not selling | You | Check playbook circuit breakers. Try different approach. |
+| Shared Daily Researcher broken | Jeff | Check n8n execution logs. Fix and restart. |
+| Vault out of sync | Either | `git pull --rebase` then resolve conflicts |
 
 ---
 
 ## Keeping the System Running
 
-### Infrastructure Dependencies
+### Infrastructure Dependencies (Jeff Manages)
 
-| Component | Hosted On | What Happens If It Dies | Recovery |
-|---|---|---|---|
-| **Mac Mini (MiniDev)** | Your desk | Everything stops | Restart Mac, `pm2 restart all`. All workflows resume. |
-| **n8n** | Mac Mini | Automation stops | `pm2 restart n8n`. Workflows are persisted in SQLite. |
-| **Vercel** | Cloud | Micro-SaaS goes down | Check Vercel dashboard. Usually auto-recovers. |
-| **Supabase** | Cloud | Database unavailable | Check status.supabase.com. Free tier has good uptime. |
-| **Claude Code** | Mac Mini | Can't run AI tasks | Check `claude --version`. Re-authenticate if needed. |
-| **Tailscale** | Mac Mini + cloud | Can't access remotely | Restart Tailscale: `sudo tailscale up` |
-| **Internet** | ISP | Everything external stops | Wait for ISP. Trading bots have stop-losses set server-side. |
+| Component | Hosted On | Recovery |
+|---|---|---|
+| **Mac Mini (MiniDev)** | Jeff's desk | Restart Mac, `pm2 restart all`. All workflows resume. |
+| **n8n** | Mac Mini | `pm2 restart n8n`. Workflows persisted in SQLite. |
+| **Tailscale** | Mac Mini + cloud | `sudo tailscale up` |
 
 ### Long-Term Sustainability
 
 | Timeframe | Action |
 |---|---|
-| **Weekly** | Review and approve via Telegram. Update vault. |
-| **Monthly** | Check costs. Reconcile with partner. Review strategy health. |
-| **Quarterly** | Full portfolio valuation. Consider adding/killing strategies. Update projections. |
-| **If you go on vacation** | System runs autonomously. Trading bots have safety limits. Products sell without you. You just miss the weekly review — do it when you're back. |
-| **If Mac Mini needs replacement** | All code is in git. All n8n workflows exportable. Redeploy on any new machine in 2-3 hours. |
-
-### Backup Strategy
-
-| What | How | Frequency |
-|---|---|---|
-| Vault (this repo) | Git push to GitHub | After every update |
-| n8n workflows | Export via n8n API (automated backup workflow exists) | Daily |
-| Supabase data | Supabase dashboard → export | Monthly |
-| Trading bot config | In git repo | After every change |
-
----
-
-## Cost Breakdown
-
-### Month 1 Costs (Startup)
-
-| Item | Cost | Notes |
-|---|---|---|
-| Trading capital (Kalshi) | $25 | Deployed, not spent |
-| Trading capital (Arb) | $25 | Deployed, not spent |
-| Claude API (if any beyond Max) | $0-$5 | Using Max CLI for most tasks |
-| Gumroad listing | $0 | Free to list |
-| Vercel | $0 | Free tier |
-| Supabase | $0 | Free tier |
-| **Total out-of-pocket** | **$0-$5** | Capital is deployed, not spent |
-
-### Monthly Ongoing Costs
-
-| Item | Cost | Notes |
-|---|---|---|
-| Claude API (overflow beyond Max) | $0-$10 | Only if Max quota insufficient |
-| Vercel | $0 | Free tier covers early usage |
-| Supabase | $0 | Free tier |
-| Domain (shared) | ~$1 | $12/year ÷ 12 |
-| Mac Mini electricity | ~$5 | Already running |
-| **Total** | **$1-$16/month** | Covered by revenue after Month 2-3 |
-
-### When Revenue Should Cover Costs
-
-By Month 3, even modest traction should generate $50+/month across all strategies — more than enough to cover the $1-$16/month operating costs. The system becomes self-sustaining.
+| **Weekly** | Each partner reviews their own digest. Updates their vault folder. |
+| **Monthly** | Review API costs. Compare notes on what's working. |
+| **Quarterly** | Full portfolio valuation. Consider adding/killing strategies. |
+| **If Jeff goes on vacation** | System runs autonomously. Trading bots have safety limits. Patrick's workflows keep running. |
+| **If Mac Mini needs replacement** | All code in git. n8n workflows exportable. Redeploy in 2-3 hours. |
 
 ---
 
 ## Escalation Procedures
 
 ### Level 1: Automated Response (No Human Needed)
-
 - Trading bot drawdown >30% → bot auto-pauses
 - n8n workflow error → auto-retry (3 attempts)
 - API rate limit → exponential backoff
 
-### Level 2: Telegram Alert (Quick Human Decision)
-
+### Level 2: Telegram Alert (Quick Decision — Your Own Strategies)
 - Strategy health <40 → review within 48 hours
-- Capital move request → approve/reject within 1 week
-- New high-scoring opportunity → pursue/watch/skip
+- Capital move request → approve/reject
+- New high-scoring opportunity from Daily Researcher → pursue/watch/skip
 
 ### Level 3: Claude Code Session (Build/Fix Required)
-
 - Strategy needs features or bug fixes
 - New strategy to add from opportunity log
 - Infrastructure issue requiring code changes
 
 ### Level 4: Manual Intervention (Rare)
-
-- Mac Mini hardware failure → replace and redeploy from git
-- Trading account issue (verification, frozen funds) → contact platform support
-- Legal/regulatory change → review affected strategies, decide to continue or exit
+- Mac Mini hardware failure → Jeff replaces and redeploys
+- Trading account issues → contact platform support yourself
+- Legal/regulatory change → review and decide independently
