@@ -1,6 +1,6 @@
 # Patrick's Portfolio
 
-> Independent operator. Uses shared n8n infrastructure, supplies own API keys.
+> Independent operator. Runs own Claude Code sessions, manages own strategies, supplies own API keys.
 
 ---
 
@@ -38,7 +38,7 @@
 | Polymarket | Not created | Fund with trading capital (crypto wallet needed) |
 | Gumroad | Not created | Your own seller account |
 | Stripe | Not created | For SaaS payments if you build one |
-| Claude API | Not created | Your own API key (or ask Jeff about shared Max sub) |
+| Claude API | Not created | Your own API key — console.anthropic.com |
 
 ---
 
@@ -54,7 +54,7 @@
 | Gumroad | Access token | Not created | For sales tracking |
 | Gmail | OAuth or App Password | Not created | For email workflows in n8n |
 
-> Jeff will set up your credentials in n8n once you provide them.
+> Set up your own credentials in n8n at https://n8n.troontech.net. See [[Architecture#n8n Multi-Partner Setup]] for naming conventions.
 
 ---
 
@@ -75,7 +75,7 @@
 
 | Item | Who Pays | Amount | Notes |
 |---|---|---|---|
-| n8n infrastructure | Jeff (shared) | $0 for you | Runs on Jeff's Mac Mini |
+| n8n infrastructure | Shared (hosted on Mac Mini) | $0 | Already running |
 | Your Claude API usage | You | Pay-per-token | Your own API key |
 | Your trading capital | You | Your own $50 | Your own accounts |
 | Your domains (if any) | You | ~$12/year | Optional |
@@ -83,10 +83,22 @@
 
 ---
 
+## n8n Access
+
+| Field | Value |
+|---|---|
+| **n8n URL** | https://n8n.troontech.net |
+| **Credential prefix** | `Patrick -` (e.g., `Patrick - Kalshi API`) |
+| **Workflow prefix** | `[Patrick]` (e.g., `[Patrick] Kalshi Weather Bot`) |
+
+> You have full access to create workflows, add credentials, and manage your own automations. See [[Architecture]] for the full setup.
+
+---
+
 ## Notes
 
-- You do NOT need your own infrastructure — Jeff's n8n handles everything
-- You DO need your own API keys and accounts
+- Shared n8n instance at https://n8n.troontech.net — you have full access
+- You run your own Claude Code sessions to build your strategies
+- You set up your own credentials in n8n directly
 - Revenue from your strategies is 100% yours
 - The shared vault gives you access to all research and playbooks
-- Jeff can run Claude Code build sessions for you, or you can run your own

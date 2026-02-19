@@ -1,6 +1,6 @@
 # Jeff's Portfolio
 
-> Independent operator. Hosts shared infrastructure on MiniDev Mac Mini.
+> Independent operator. Hosts shared n8n infrastructure on MiniDev Mac Mini.
 
 ---
 
@@ -57,6 +57,6 @@
 ## Notes
 
 - Infrastructure host (MiniDev Mac Mini) — n8n, Tailscale, Claude Code
-- Runs Claude Code build sessions for your own strategies
-- Weekly reviewer — reviews your own Telegram digest
-- Your n8n workflows use your own credentials (API keys, OAuth tokens)
+- Runs own Claude Code build sessions for own strategies
+- Weekly reviewer — reviews own Telegram digest
+- n8n workflows use own credentials (API keys, OAuth tokens)

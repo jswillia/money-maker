@@ -148,7 +148,7 @@ This is called a **merge conflict**. It's rare if you follow the pattern below, 
 | Decision Log | Partner - Portfolio.md | Different files = safe |
 | Dashboard | Dashboard | **Same file = possible conflict** |
 
-**Best practice:** Each partner primarily edits their own portfolio note and leaves strategy/system notes to Jeff (who runs Claude Code sessions). This almost eliminates conflicts.
+**Best practice:** Each partner primarily edits their own folder (`Jeff/` or `Patrick/`) and shared strategy playbooks. This almost eliminates conflicts.
 
 ### If a Conflict Happens
 
@@ -250,13 +250,12 @@ This makes the vault auto-sync every 10 minutes. You'll never need to open Termi
 
 ### "Permission denied" when pushing
 
-Your GitHub account needs collaborator access to the repo. Jeff adds you:
-```bash
-# Jeff runs this:
-gh repo edit jswillia/money-maker --add-collaborator PARTNER_GITHUB_USERNAME
-```
+Your GitHub account needs collaborator access to the repo. The repo owner adds you:
 
-Or go to GitHub → repo Settings → Collaborators → Add people.
+Go to GitHub → repo Settings → Collaborators → Add people. Or via CLI:
+```bash
+gh repo edit jswillia/money-maker --add-collaborator YOUR_GITHUB_USERNAME
+```
 
 ### "Your local changes would be overwritten by merge"
 
@@ -288,17 +287,17 @@ git reset --hard origin/main
 
 ## How This Works with Claude Code
 
-When Jeff runs a Claude Code session to build strategies or n8n workflows, Claude Code reads and writes files in this vault. After a session:
+When either partner runs a Claude Code session to build strategies or n8n workflows, Claude Code reads and writes files in this vault. After a session:
 
-1. Jeff reviews the changes in Obsidian
-2. Jeff pushes to GitHub:
+1. Review the changes in Obsidian
+2. Push to GitHub:
    ```bash
    git add -A && git commit -m "Claude Code: built Kalshi weather bot" && git push
    ```
-3. Partner pulls on their machine:
+3. The other partner pulls on their machine:
    ```bash
    git pull
    ```
-4. Partner sees all the new/updated notes in their Obsidian
+4. They see all the new/updated notes in their Obsidian
 
 The build artifacts, strategy updates, and system changes all flow through git.

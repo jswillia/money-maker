@@ -71,11 +71,11 @@ Both partners read the Gumroad Digital Products playbook. Jeff decides to build 
 
 ## What's Shared vs What's Independent
 
-### Shared (Jeff Hosts)
+### Shared Infrastructure
 
 | Resource | Details |
 |---|---|
-| **n8n** | All workflows run on Jeff's Mac Mini. Each partner's workflows use their own credentials. |
+| **n8n** | Runs on Mac Mini (MiniDev). Both partners have full access. Each partner's workflows use their own credentials. URL: https://n8n.troontech.net |
 | **Obsidian Vault** | This vault, shared via git. Both partners read/write. |
 | **Daily Researcher** | One opportunity scanner serves both — shared intelligence. |
 | **Research** | All research reports in `Research/` benefit everyone. |
@@ -99,7 +99,7 @@ Both partners read the Gumroad Digital Products playbook. Jeff decides to build 
 
 ### How Multi-Partner n8n Works
 
-n8n runs on Jeff's Mac Mini. Both partners have workflows on the same instance, but each workflow uses the owner's credentials.
+n8n runs on the shared Mac Mini (MiniDev) at https://n8n.troontech.net. Both partners have full access. Each workflow uses the owner's credentials.
 
 ```
 n8n Instance (Jeff's Mac Mini)
@@ -112,12 +112,15 @@ n8n Instance (Jeff's Mac Mini)
 └── [Shared] Daily Researcher      → Jeff's credentials (shared benefit)
 ```
 
-### Setting Up Patrick's Credentials in n8n
+### Setting Up Your Credentials in n8n
 
-1. Patrick generates API keys for each service (see [[Patrick/Portfolio|Patrick's Portfolio]])
-2. Patrick sends credentials to Jeff securely (Signal, encrypted email, etc.)
-3. Jeff creates credential entries in n8n named with Patrick's prefix: `Patrick - Kalshi API`, `Patrick - Gmail`, etc.
-4. Jeff's Claude Code sessions build workflows using Patrick's credentials where appropriate
+Each partner sets up their own credentials directly in n8n:
+
+1. Generate API keys for each service you need (see your Portfolio note)
+2. Log into n8n at https://n8n.troontech.net
+3. Go to **Credentials** → **Add Credential**
+4. Name with your prefix: `Patrick - Kalshi API`, `Jeff - Gmail`, etc.
+5. Your Claude Code sessions will reference these credentials when building workflows
 
 ### Workflow Naming Convention
 
@@ -147,7 +150,7 @@ Patrick has two options:
 | Option | Pros | Cons |
 |---|---|---|
 | **Own Claude API key** | Full independence, clear billing | Pay-per-token (~$5-15/month for this project) |
-| **Use Jeff's Max sub** | Free for Patrick | Consumes Jeff's quota; need Jeff to set up |
+| **Use shared Max sub** | No per-token cost | Consumes shared quota; requires Execute Command node setup |
 
 **Recommended:** Patrick starts with his own API key for independence. If costs are too high, discuss sharing Jeff's Max subscription.
 
@@ -186,7 +189,7 @@ After your strategies are built, your weekly role is:
 | Event | What You Do | Urgency |
 |---|---|---|
 | Telegram: "Strategy health < 40" | Review your strategy, decide: investigate or kill | Within 48 hours |
-| Telegram: "n8n heartbeat missed" | Jeff checks Mac Mini | Within 24 hours |
+| Telegram: "n8n heartbeat missed" | Either partner: SSH to MiniDev and restart n8n | Within 24 hours |
 | Telegram: "Drawdown > 30%" | Bot auto-paused. Review and decide: resume or kill | Within 48 hours |
 | Partner shares a learning | Read it, consider applying to your strategies | Next weekly review |
 
@@ -240,7 +243,7 @@ Each partner gets their own monitoring workflows:
 | Sales tracker | Your Gumroad/Stripe | Your Telegram |
 | Workflow failures | Your workflows | Your Telegram |
 
-### Shared Monitoring (Jeff Manages)
+### Shared Monitoring (Either Partner Can Check)
 
 | Monitor | Frequency | What It Checks |
 |---|---|---|
@@ -252,21 +255,21 @@ Each partner gets their own monitoring workflows:
 
 | Problem | Who Fixes | How |
 |---|---|---|
-| n8n stopped | Jeff | SSH to MiniDev: `pm2 restart n8n` |
+| n8n stopped | Either | SSH to MiniDev: `pm2 restart n8n` |
 | Your trading bot losing money | You | Bot auto-pauses at 30% drawdown. Review trading log. |
 | Your products not selling | You | Check playbook circuit breakers. Try different approach. |
-| Shared Daily Researcher broken | Jeff | Check n8n execution logs. Fix and restart. |
+| Shared Daily Researcher broken | Either | Check n8n execution logs at https://n8n.troontech.net. Fix and restart. |
 | Vault out of sync | Either | `git pull --rebase` then resolve conflicts |
 
 ---
 
 ## Keeping the System Running
 
-### Infrastructure Dependencies (Jeff Manages)
+### Infrastructure Dependencies
 
 | Component | Hosted On | Recovery |
 |---|---|---|
-| **Mac Mini (MiniDev)** | Jeff's desk | Restart Mac, `pm2 restart all`. All workflows resume. |
+| **Mac Mini (MiniDev)** | Physical machine | Restart Mac, `pm2 restart all`. All workflows resume. |
 | **n8n** | Mac Mini | `pm2 restart n8n`. Workflows persisted in SQLite. |
 | **Tailscale** | Mac Mini + cloud | `sudo tailscale up` |
 
@@ -277,7 +280,7 @@ Each partner gets their own monitoring workflows:
 | **Weekly** | Each partner reviews their own digest. Updates their vault folder. |
 | **Monthly** | Review API costs. Compare notes on what's working. |
 | **Quarterly** | Full portfolio valuation. Consider adding/killing strategies. |
-| **If Jeff goes on vacation** | System runs autonomously. Trading bots have safety limits. Patrick's workflows keep running. |
+| **If a partner goes on vacation** | System runs autonomously. Trading bots have safety limits. All workflows keep running. |
 | **If Mac Mini needs replacement** | All code in git. n8n workflows exportable. Redeploy in 2-3 hours. |
 
 ---
@@ -300,6 +303,6 @@ Each partner gets their own monitoring workflows:
 - Infrastructure issue requiring code changes
 
 ### Level 4: Manual Intervention (Rare)
-- Mac Mini hardware failure → Jeff replaces and redeploys
+- Mac Mini hardware failure → replace and redeploy from git
 - Trading account issues → contact platform support yourself
 - Legal/regulatory change → review and decide independently

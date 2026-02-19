@@ -48,8 +48,8 @@
 | **Telegram** | Alerts, human I/O, digests | Cloud | $0 | Separate channels per partner |
 | **Gmail** | Email delivery | Cloud (via n8n) | $0 | Each partner's own credentials |
 | **Obsidian** | Knowledge base (this vault) | Local + Git sync | $0 | Shared |
-| **Tailscale** | Remote access to Mac Mini | Cloud + local | $0 | Jeff manages |
-| **Mac Mini** | Always-on compute | Local (MiniDev) | $0 (already running) | Jeff hosts |
+| **Tailscale** | Remote access to Mac Mini | Cloud + local | $0 | Shared |
+| **Mac Mini** | Always-on compute | Local (MiniDev) | $0 (already running) | Shared |
 
 ## n8n Multi-Partner Setup
 

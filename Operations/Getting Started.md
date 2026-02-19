@@ -11,7 +11,7 @@ Before starting, you need:
 - [ ] **$100 cash** available to deploy
 - [ ] **This vault** open in Obsidian (see [[Git and Obsidian Guide]])
 - [ ] **Your API keys** ready (see your Portfolio note)
-- [ ] Access to Jeff's n8n instance (Jeff sets this up for you)
+- [ ] Access to the shared n8n instance at https://n8n.troontech.net
 
 ---
 
@@ -63,13 +63,13 @@ Set up accounts based on the strategies you chose. Update your Portfolio note as
 | **Claude/Anthropic** | API key | console.anthropic.com → API Keys |
 | **Gmail** | OAuth or App Password | For email workflows in n8n |
 
-> Send your credentials to Jeff securely (Signal, etc.) so he can set them up in n8n.
+> Set up your credentials directly in n8n at https://n8n.troontech.net → Credentials → Add Credential. Use your name prefix (e.g., `Patrick - Kalshi API`).
 
 ---
 
 ## Phase 2: Build Your Strategies (Claude Code Sessions)
 
-Each strategy is built in a Claude Code session. Jeff can run these for you, or you can run your own.
+Each strategy is built in a Claude Code session. Each partner runs their own sessions.
 
 ### Claude Code Kickoff Prompt (Template)
 
