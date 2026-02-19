@@ -1,0 +1,20 @@
+# Obsidian workspace (unique per user - causes conflicts)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspaces.json
+
+# Obsidian cache and local state  
+.obsidian/graph.json
+.obsidian/backlink.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Obsidian plugins (each user installs their own)
+.obsidian/plugins/
+.obsidian/themes/
+
+# Temporary files
+*.tmp
+*~
