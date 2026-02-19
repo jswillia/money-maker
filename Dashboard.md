@@ -13,6 +13,9 @@
 | [[Weekly Review Checklist]] | Your weekly 30-min review procedure |
 | [[Getting Started]] | Step-by-step launch instructions |
 | [[Architecture]] | How the whole system fits together |
+| [[Git and Obsidian Guide]] | How to sync this vault between partners |
+
+**GitHub:** https://github.com/jswillia/money-maker
 
 ---
 

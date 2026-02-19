@@ -63,7 +63,8 @@ money-maker/
 - **Supabase:** Free tier for database + auth
 - **Claude API:** Used for scoring, analysis, content generation
 - **Telegram:** Alerts and human I/O
-- **Git repo:** `/Users/jeffdev/dev/git/money-maker`
+- **Git repo:** `https://github.com/jswillia/money-maker`
+- **Local path (Jeff):** `/Users/jeffdev/Library/Mobile Documents/iCloud~md~obsidian/Documents/Money-Maker`
 
 ### Obsidian Link Format
 Use wikilinks: `[[note name]]` or `[[note name|display text]]`
